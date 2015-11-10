@@ -15,14 +15,13 @@ var birdFour = new Photo("Darren", "Darren wishes he could wear shoes", "images/
 var birdFive = new Photo("Kakaaa", "Kakaa is just kinda lonely", "images/sadbird5.jpg");
 var birdSix = new Photo("Big Bird", "Big Bird ate some bad seeds", "images/sadbird6.jpg");
 var birdSeven = new Photo("Carrol","Carrol can't dance", "images/sadbird7.jpg");
-var birdEight = new Photo("Creepy Theodore", "What Theodore believed to be a seed, was not.", "images/sadbird8.jpg");
-var birdNine = new Photo("Jaime","Jaime is afraid of the dark, this saddens her","images/sadbird9.jpg");
+var birdEight = new Photo("Creepy Theodore", "What Theodore believed to be a mouse, was not.", "images/sadbird8.jpg");
+var birdNine = new Photo("Jaime","Jaime is afraid of heights","images/sadbird9.jpg");
 var birdTen = new Photo("Clef","Clef lost his job","images/sadbird10.jpg");
 var birdEleven = new Photo("Jean", "Jean has a terrible singing voice","images/sadbird12.jpg")
 var birdTwelve = new Photo("Aleks","Aleks did not wake up early enough to get the worm","images/sadbird11.jpg")
 
 //generate images + responses to events
-
 var tracker = {
   generateRandom: function() {
     return images[Math.floor(Math.random() * images.length)]
@@ -80,23 +79,15 @@ var tracker = {
   },
 };
 
-
 var content = tracker.generateRandom();
 var content2 = tracker.generateRandom();
-
 var click = document.getElementById("imgOne");
 var click2 = document.getElementById("imgTwo");
-
 var clickButton = document.getElementById("newImages");
 
-
-
-
-document.getElementById("newImages").style.display = 'none';
-tracker.loadImages();
-
+document.getElementById("newImages").style.display = 'none'; //hide button
 click.addEventListener('click', tracker.handleClick);
 click2.addEventListener('click', tracker.handleClick);
-
 clickButton.addEventListener('click', tracker.handleButton);
+tracker.loadImages();
 
