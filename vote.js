@@ -49,30 +49,36 @@ var tracker = {
     }
   },
 
-//should be able to make handleclick(2) one function right?
-    handleClick: function (event) {
+  handleClick: function (event) {
     var response = document.createElement("h3");
+    if (event.target === click) {
     var position = document.getElementById("captionOne")
     response.textContent = "You chose" + " " + content.name;
-    position.appendChild(response);
     content.votes++;
-    console.log(content.name + " " + content.votes);
-    document.getElementById('newImages').style.display = 'block';
-    click.removeEventListener('click', tracker.handleClick);
-    click2.removeEventListener('click', tracker.handleClick2)
-    },
-    handleClick2: function () {
-    var response = document.createElement("h3");
+    console.log(content.name + " " + content.votes); //remove later
+    } else if (event.target === click2) {
     var position = document.getElementById("captionTwo")
     response.textContent = "You chose" + " " + content2.name;
-    position.appendChild(response);
     content2.votes++;
-    console.log(content2.name + " " + content2.votes);
+    console.log(content2.name + " " + content2.votes);   //remove later
+    }
+    position.appendChild(response);
     document.getElementById('newImages').style.display = 'block';
-    click2.removeEventListener('click', tracker.handleClick2);
+    click2.removeEventListener('click', tracker.handleClick);
     click.removeEventListener('click', tracker.handleClick);
-    },
-  };
+  },
+
+  handleButton: function(event) {
+    event.preventDefault();
+    document.getElementById("imgOne").removeAttribute("src");
+    document.getElementById("imgTwo").removeAttribute("src");
+    document.getElementById("newImages").style.display = 'none';
+    tracker.newContent();
+    tracker.loadImages();
+    click.addEventListener('click', tracker.handleClick);
+    click2.addEventListener('click', tracker.handleClick);
+  },
+};
 
 
 var content = tracker.generateRandom();
@@ -84,22 +90,13 @@ var click2 = document.getElementById("imgTwo");
 var clickButton = document.getElementById("newImages");
 
 
-var handleButton = function(event) {
-  event.preventDefault();
-  document.getElementById("imgOne").removeAttribute("src");
-  document.getElementById("imgTwo").removeAttribute("src");
-  document.getElementById("newImages").style.display = 'none';
-  tracker.newContent();
-  tracker.loadImages();
-  click.addEventListener('click', tracker.handleClick);
-  click2.addEventListener('click', tracker.handleClick2);
-};
 
 
+document.getElementById("newImages").style.display = 'none';
 tracker.loadImages();
 
 click.addEventListener('click', tracker.handleClick);
-click2.addEventListener('click', tracker.handleClick2);
+click2.addEventListener('click', tracker.handleClick);
 
-clickButton.addEventListener('click', handleButton);
+clickButton.addEventListener('click', tracker.handleButton);
 
