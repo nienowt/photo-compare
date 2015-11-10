@@ -10,11 +10,10 @@ figure {
 
 
 /*style*/
-.pic:target {
+img:target {
   outline:solid red 10px;
 }
 
 figcaption {
   text-align: center;
   width:250px;
-}

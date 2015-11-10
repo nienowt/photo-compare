@@ -28,10 +28,15 @@ var tracker = {
     return images[Math.floor(Math.random() * images.length)]
   },
 
+  newContent: function() {
+    content2 = this.generateRandom();
+    content = this.generateRandom();
+  },
+
   loadImages: function() {
     var fig1 = document.getElementById("imgOne");
     fig1.src = content.path;
-    var figCaption1 = document.getElementById("captionOne");
+    var figCaption1 = document.getElementById("captionOne"); //do while instead of if else
     figCaption1.textContent = content.reason;
       if (content !== content2) {
     var fig2 = document.getElementById("imgTwo");
@@ -39,7 +44,8 @@ var tracker = {
     var figCaption2 = document.getElementById("captionTwo");
     figCaption2.textContent = content2.reason;
     } else {
-    tracker.loadImages(); //ask about this, might not be doing anything ---returns error sometimes
+    this.newContent();
+    this.loadImages();
     }
   },
 
@@ -50,8 +56,9 @@ var tracker = {
     response.textContent = "You chose" + " " + content.name;
     position.appendChild(response);
     content.votes++;
-    button();
-    click.removeEventListener('click', tracker.handleClick); //instead of this, maybe treat images as radio buttons or something?
+    console.log(content.name + " " + content.votes);
+    document.getElementById('newImages').style.display = 'block';
+    click.removeEventListener('click', tracker.handleClick);
     click2.removeEventListener('click', tracker.handleClick2)
     },
     handleClick2: function () {
@@ -60,7 +67,8 @@ var tracker = {
     response.textContent = "You chose" + " " + content2.name;
     position.appendChild(response);
     content2.votes++;
-    button();
+    console.log(content2.name + " " + content2.votes);
+    document.getElementById('newImages').style.display = 'block';
     click2.removeEventListener('click', tracker.handleClick2);
     click.removeEventListener('click', tracker.handleClick);
     },
@@ -73,31 +81,25 @@ var content2 = tracker.generateRandom();
 var click = document.getElementById("imgOne");
 var click2 = document.getElementById("imgTwo");
 
+var clickButton = document.getElementById("newImages");
 
-var button = function () {                      //probably wrong button
-  var form = document.createElement("form");
-  var input = document.createElement("input");
-  var position = document.getElementById("button");
-  input.id = "newImages"
-  input.type = "submit";
-  input.name = "submit";
-  input.value = "New Images";
-  form.appendChild(input);
-  position.appendChild(form);
+
+var handleButton = function(event) {
+  event.preventDefault();
+  document.getElementById("imgOne").removeAttribute("src");
+  document.getElementById("imgTwo").removeAttribute("src");
+  document.getElementById("newImages").style.display = 'none';
+  tracker.newContent();
+  tracker.loadImages();
+  click.addEventListener('click', tracker.handleClick);
+  click2.addEventListener('click', tracker.handleClick2);
 };
-
-// var handleButton = function(event) {
-//   event.preventDefault();
-//   tracker.loadImages();
-//   var child = getElementById("submit");
-//   var container = parent.parentNode;
-//   container.removeChilde(child);
-// };
-// var clickButton = document.getElementById("newImages");
 
 
 tracker.loadImages();
 
 click.addEventListener('click', tracker.handleClick);
 click2.addEventListener('click', tracker.handleClick2);
-// clickButton.addEventListener('submit', handleButton);
+
+clickButton.addEventListener('click', handleButton);
+
