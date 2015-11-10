@@ -6,3 +6,15 @@ figure {
   display:inline;
   width:300px;
 }
+
+
+
+/*style*/
+.pic:target {
+  outline:solid red 10px;
+}
+
+figcaption {
+  text-align: center;
+  width:250px;
+}
