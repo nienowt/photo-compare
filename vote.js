@@ -16,7 +16,7 @@ var data = {
 
 var images = [];
 
- function Photo(name, reason, path){
+function Photo(name, reason, path){
   this.name = name;
   this.reason = reason;
   this.path = path;
@@ -51,28 +51,24 @@ var tracker = {
   },
 
   loadImages: function() {
-    var fig1 = document.getElementById("imgOne");
-    fig1.src = content.path;
+    left.src = content.path;
     var figCaption1 = document.getElementById("captionOne"); //do while instead of if else
     figCaption1.textContent = content.reason;
-      if (content !== content2) {
-    var fig2 = document.getElementById("imgTwo");
-    fig2.src = content2.path;
+      while (content === content2) {
+        content2 = this.generateRandom();
+      }
+    right.src = content2.path;
     var figCaption2 = document.getElementById("captionTwo");
     figCaption2.textContent = content2.reason;
-    } else {
-    this.newContent();
-    this.loadImages();
-    }
   },
 
   handleClick: function (event) {
     var response = document.createElement("h6");
-    if (event.target === click) {
+    if (event.target === left) {
     var position = document.getElementById("captionOne")
     response.textContent = "You chose" + " " + content.name;
     content.votes++;
-    } else if (event.target === click2) {
+    } else if (event.target === right) {
     var position = document.getElementById("captionTwo")
     response.textContent = "You chose" + " " + content2.name;
     content2.votes++;
@@ -80,8 +76,8 @@ var tracker = {
     position.appendChild(response);
     update();
     document.getElementById('newImages').style.display = 'block';
-    click2.removeEventListener('click', tracker.handleClick);
-    click.removeEventListener('click', tracker.handleClick);
+    right.removeEventListener('click', tracker.handleClick);
+    left.removeEventListener('click', tracker.handleClick);
   },
 
   handleButton: function(event) {
@@ -91,21 +87,21 @@ var tracker = {
     document.getElementById("newImages").style.display = 'none';
     tracker.newContent();
     tracker.loadImages();
-    click.addEventListener('click', tracker.handleClick);
-    click2.addEventListener('click', tracker.handleClick);
+    left.addEventListener('click', tracker.handleClick);
+    right.addEventListener('click', tracker.handleClick);
   },
 };
 
 var content = tracker.generateRandom();
 var content2 = tracker.generateRandom();
 
-var click = document.getElementById("imgOne");
-var click2 = document.getElementById("imgTwo");
+var left = document.getElementById("imgOne");
+var right = document.getElementById("imgTwo");
 var clickButton = document.getElementById("newImages");
 
 document.getElementById("newImages").style.display = 'none'; //hide button
-click.addEventListener('click', tracker.handleClick);
-click2.addEventListener('click', tracker.handleClick);
+left.addEventListener('click', tracker.handleClick);
+right.addEventListener('click', tracker.handleClick);
 clickButton.addEventListener('click', tracker.handleButton);
 tracker.loadImages();
 
