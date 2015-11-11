@@ -3,27 +3,36 @@
 <head>
   <title>Sad Bird Battle</title>
   <link rel="stylesheet" type="text/css" href="layout.css">
+  <script src="chart.js"></script>
 </head>
   <div id="page">
     <body>
-      <h1 id="title">Which Bird is the Saddest Bird?<h1>
-      <h4>Click the bird you believe to be the Saddest bird</h4>
-      <section class = "container" id="top">
-        <figure id="figOne">
-          <img id="imgOne" class="pic">
-        <figcaption id="captionOne"></figcaption>
-        </figure>
-        <div id="button">
-          <input id="newImages" type="submit" value="Rate more Images!" />
-        </div>
-        <figure id="figTwo">
-          <img id="imgTwo">
-        <figcaption id="captionTwo"></figcaption>
-        </figure>
-      </section>
-      <section id="chart">
-      </section>
-    <script type="text/javascript" src="vote.js"></script>
+      <header id="header">
+        <h1>Which Bird is the Saddest Bird?<h1>
+        <h4>Click the bird you believe to be the Saddest bird!</h4>
+      </header>
+        <section class = "container" id="top">
+          <figure id="figOne">
+            <img id="imgOne" class="pic">
+          <figcaption id="captionOne"></figcaption>
+          </figure>
+        <section id="chart">
+          <canvas id="myChart" width="400" height="400"></canvas>
+          <div id="button">
+            <input id="newImages" type="submit" value="Rate more Images!" />
+          </div>
+        </section>
+          <figure id="figTwo">
+            <img id="imgTwo">
+          <figcaption id="captionTwo"></figcaption>
+          </figure>
+        </section>
+        <section id="empty">
+          </section>
+          <footer>
+            <p>Copyright Sad Birds Unlimited 2015</p>
+          </footer>
+      <script type="text/javascript" src="vote.js"></script>
     </body>
   </div>
 </html>
