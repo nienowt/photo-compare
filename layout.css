@@ -1,8 +1,11 @@
 
 .container {
-  display: inline-flex;
-  margin:50px 450px;
-
+  display:flex;
+  margin:50px 200px 0px;
+}
+#page{
+  height: 100%;
+  width:100%;
 }
 
 figure {
@@ -14,18 +17,41 @@ figure {
   width: 150px;
 }
 #button input {
-  margin-top: 80%;
+  margin-top: 50px;
+  margin-left:130px;
 }
+#chart {
+  margin-left:0px;
+  margin-top: 10px;
+}
+#header {
+  margin-left: 550px;
+}
+#figOne {
+  margin-right: 0px;
+}
+#empty {
+  height:400px;
+}
+h4 {
+  margin-left: 4%;
 
+}
 
 /*style*/
 
+img {
+  border: solid white 5px;
+}
 
-
-img:target {
-  outline: solid red 10px;
+img:active {
+  outline: solid black 10px;
+}
+body{
+  background-color:gray;
 }
 
 figcaption {
   text-align: center;
   width:250px;
+  font-size:2em;
