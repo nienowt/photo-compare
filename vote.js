@@ -62,6 +62,7 @@ var tracker = {
     console.log(content2.name + " " + content2.votes);   //remove later
     }
     position.appendChild(response);
+    update();
     document.getElementById('newImages').style.display = 'block';
     click2.removeEventListener('click', tracker.handleClick);
     click.removeEventListener('click', tracker.handleClick);
@@ -110,9 +111,6 @@ var makeData = function() {
   }
   return data;
 };
-
-
-
 
 
 var data = {
@@ -180,3 +178,9 @@ var myBarChart = new Chart(ctx).Bar(data, {
 
 });
 
+var update = function(){
+  for (i=0; i < images.length; i++) {
+myBarChart.datasets[0].bars[i].value = images[i].votes;
+myBarChart.update();
+  }
+};
