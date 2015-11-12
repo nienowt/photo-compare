@@ -39,6 +39,11 @@ var birdTen = new Photo("Clif","Clif has a merge conflict","images/sadbird10.jpg
 var birdEleven = new Photo("Jean", "Jean has a terrible singing voice","images/sadbird12.jpg");
 var birdTwelve = new Photo("Aleks","Aleks did not wake up early enough and missed the worm","images/sadbird11.jpg");
 
+var checkLocal = function() {
+  if (localStorage.chartData) {
+    updateChart();
+  }
+};
 //generate images + responses to events
 var tracker = {
   generateRandom: function() {
@@ -74,7 +79,9 @@ var tracker = {
     content2.votes++;
     }
     position.appendChild(response);
-    update();
+    var toLocal = JSON.stringify(images);
+    localStorage.setItem('chartData', toLocal);
+    updateChart();
     document.getElementById('newImages').style.display = 'block';
     removeListener();
   },
@@ -102,7 +109,6 @@ var addListener = function() {
   right.addEventListener('click', tracker.handleClick);
 };
 
-
 document.getElementById("newImages").style.display = 'none'; //hide button
 clickButton.addEventListener('click', tracker.handleButton);
 addListener();
@@ -115,9 +121,33 @@ var myBarChart = new Chart(ctx).Bar(data, {
     scaleFontColor: "white",
 });
 
-var update = function(){
+var updateChart = function(){
+  var getData = localStorage.getItem('chartData');
+  var getDataParsed = JSON.parse(getData);
+  console.log(getDataParsed);
   for (i=0; i < images.length; i++) {
+images[i].votes = getDataParsed[i].votes;
 myBarChart.datasets[0].bars[i].value = images[i].votes;
 myBarChart.update();
   }
 };
+checkLocal();
+
+//add new images
+var form = document.getElementById('subImages');
+var handleSub = function(event) {
+  event.preventDefault();
+
+    if ((!event.target.imageName.value) || (!event.target.reason.value) || (!event.target.url.value)) {
+      return alert('Fill those fields!');
+    }
+
+    var birdName = event.target.imageName.value;
+    var sadReason = event.target.reason.value;
+    var imgLoc = event.target.url.value;
+
+    var addBird = new Photo(birdName, sadReason, imgLoc);
+};
+
+
+form.addEventListener('submit', handleSub);
