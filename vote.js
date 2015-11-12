@@ -33,7 +33,7 @@ var birdFour = new Photo("Darren", "Darren wishes he could wear shoes", "images/
 var birdFive = new Photo("Karl", "Karl has scurvy", "images/sadbird5.jpg");
 var birdSix = new Photo("Big Bird", "Big Bird hates children", "images/sadbird6.jpg");
 var birdSeven = new Photo("Carrol","Carrol can't dance", "images/sadbird7.jpg");
-var birdEight = new Photo("Creepy Theodore", "Theodore just watched the episode of 'Saved by the Bell' where Jesse gets addicted to caffiene pills", "images/sadbird8.jpg");
+var birdEight = new Photo("Creepy Theodore", "Theodore just watched the episode of 'Saved by the Bell' where Jesse gets addicted to caffeine pills", "images/sadbird8.jpg");
 var birdNine = new Photo("Jaime","Jaime is afraid of heights","images/sadbird9.jpg");
 var birdTen = new Photo("Clif","Clif has a merge conflict","images/sadbird10.jpg");
 var birdEleven = new Photo("Jean", "Jean has a terrible singing voice","images/sadbird12.jpg");
@@ -52,7 +52,7 @@ var tracker = {
 
   loadImages: function() {
     left.src = content.path;
-    var figCaption1 = document.getElementById("captionOne"); //do while instead of if else
+    var figCaption1 = document.getElementById("captionOne");
     figCaption1.textContent = content.reason;
       while (content === content2) {
         content2 = this.generateRandom();
@@ -66,55 +66,51 @@ var tracker = {
     var response = document.createElement("h6");
     if (event.target === left) {
     var position = document.getElementById("captionOne")
-    response.textContent = "You chose" + " " + content.name;
+    response.textContent = "You chose" + " " + content.name + "!";
     content.votes++;
     } else if (event.target === right) {
     var position = document.getElementById("captionTwo")
-    response.textContent = "You chose" + " " + content2.name;
+    response.textContent = "You chose" + " " + content2.name + "!";
     content2.votes++;
     }
     position.appendChild(response);
     update();
     document.getElementById('newImages').style.display = 'block';
-    right.removeEventListener('click', tracker.handleClick);
-    left.removeEventListener('click', tracker.handleClick);
+    removeListener();
   },
 
   handleButton: function(event) {
     event.preventDefault();
-    document.getElementById("imgOne").removeAttribute("src");
-    document.getElementById("imgTwo").removeAttribute("src");
     document.getElementById("newImages").style.display = 'none';
     tracker.newContent();
     tracker.loadImages();
-    left.addEventListener('click', tracker.handleClick);
-    right.addEventListener('click', tracker.handleClick);
+    addListener();
   },
 };
 
-var content = tracker.generateRandom();
-var content2 = tracker.generateRandom();
-
 var left = document.getElementById("imgOne");
 var right = document.getElementById("imgTwo");
+var content = tracker.generateRandom();
+var content2 = tracker.generateRandom();
 var clickButton = document.getElementById("newImages");
+var removeListener = function(){
+  right.removeEventListener('click', tracker.handleClick);
+  left.removeEventListener('click', tracker.handleClick);
+};
+var addListener = function() {
+  left.addEventListener('click', tracker.handleClick);
+  right.addEventListener('click', tracker.handleClick);
+};
+
 
 document.getElementById("newImages").style.display = 'none'; //hide button
-left.addEventListener('click', tracker.handleClick);
-right.addEventListener('click', tracker.handleClick);
 clickButton.addEventListener('click', tracker.handleButton);
+addListener();
 tracker.loadImages();
-
 //---------------chart----
 var ctx = document.getElementById("myChart").getContext("2d");
 
 var myBarChart = new Chart(ctx).Bar(data, {
-    scaleShowGridLines : true,
-    scaleGridLineColor : "rgba(0,0,0,.05)",
-    scaleGridLineWidth : 1,
-    scaleShowHorizontalLines: true,
-    scaleShowVerticalLines: true,
-    pointHitDetectionRadius : 20,
     scaleLineColor: "white",
     scaleFontColor: "white",
 });

@@ -1,11 +1,14 @@
 
 .container {
   display:flex;
-  margin:50px 200px 0px;
+  flex-flow:row wrap;
+  margin-left:10%;
 }
 #page{
   height: 100%;
   width:100%;
+  margin-left:auto;
+  margin-right: auto;
 }
 
 figure {
@@ -17,25 +20,40 @@ figure {
   width: 150px;
 }
 #button input {
+  padding: 20px;
   margin-top: 50px;
-  margin-left:130px;
-}
+  margin-left:100px;
+  border-radius: 100px;
+  border:solid white;
+  font-size: 20px;
+  font-family: Georgia;
+ }
 #chart {
   margin-left:0px;
   margin-top: 10px;
 }
 #header {
-  margin-left: 550px;
+  width:100%;
+}
+#header h2 {
+  margin-left:22%;
 }
 #figOne {
   margin-right: 20px;
+}
+#figTwo {
+  margin-right:0px;
 }
 #empty {
   height:400px;
 }
 h4 {
-  margin-left: 4%;
-
+  margin-left: 30%;
+  font-family: 'Quicksand', sans-serif;
+}
+h1 {
+  margin-left: 27%;
+  font-family: 'Quicksand', sans-serif;
 }
 
 /*style*/
@@ -55,3 +73,19 @@ figcaption {
   text-align: center;
   width:250px;
   font-size:2em;
+  font-family: 'Dosis', sans-serif;
+
+}
+
+h2 {   /*this bit via http://codepen.io/danielbhansen/pen/pwFsL*/
+  color: transparent;
+  font-family: Georgia;
+  font-style: italic;
+  font-size: 3em;
+  text-shadow: 0 0 2px #ffffff;
+  transition: all 250ms ease-in;
+}
+h2:hover {
+  text-shadow: none;
+  color: #dddddd;
+}
