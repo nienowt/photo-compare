@@ -124,7 +124,6 @@ var myBarChart = new Chart(ctx).Bar(data, {
 var updateChart = function(){
   var getData = localStorage.getItem('chartData');
   var getDataParsed = JSON.parse(getData);
-  console.log(getDataParsed);
   for (i=0; i < images.length; i++) {
 images[i].votes = getDataParsed[i].votes;
 myBarChart.datasets[0].bars[i].value = images[i].votes;
@@ -133,21 +132,4 @@ myBarChart.update();
 };
 checkLocal();
 
-//add new images
-var form = document.getElementById('subImages');
-var handleSub = function(event) {
-  event.preventDefault();
 
-    if ((!event.target.imageName.value) || (!event.target.reason.value) || (!event.target.url.value)) {
-      return alert('Fill those fields!');
-    }
-
-    var birdName = event.target.imageName.value;
-    var sadReason = event.target.reason.value;
-    var imgLoc = event.target.url.value;
-
-    var addBird = new Photo(birdName, sadReason, imgLoc);
-};
-
-
-form.addEventListener('submit', handleSub);
