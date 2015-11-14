@@ -57,6 +57,9 @@ h1 {
 }
 
 /*style*/
+footer p {
+  margin-left: 35%;
+}
 
 img {
   border: solid white 5px;
